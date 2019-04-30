@@ -1,0 +1,90 @@
+p {
+    text-shadow: 8px 8px 20px #700091;
+    text-align: center;
+    color: #dedede;
+
+}
+h2
+{
+    text-align: center;
+    color: #dedede;
+}
+h3
+{
+    text-align: center;
+   vertical-align: center;
+    color: #dedede;
+}
+form
+{
+    color: blueviolet;
+    font-size: large;
+}
+button
+{
+    background-image: linear-gradient(#8700e0, #2a004b); /*Gradient code from w3 schools */
+    border: 2px solid #000000;
+    color: #f1f0f3;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 40%;
+    border-radius: 25%;
+}
+input {
+    background: none;
+    color: #009df0;
+    font-size: large;
+    border: none;
+    border-bottom: #f1f0f3;
+}
+#herHP {
+    text-align: right; /* Enemy HP*/
+    width: 80%;
+
+}
+#hisBars
+{
+    text-align: right; /*Hero stats*/
+    width: 50%;
+    border-bottom: #f1f0f3;
+}
+#attac
+{
+    background-image: linear-gradient(#8700e0, #2a004b);/*Gradient from w3*/
+    text-align: center;
+    alignment: center;
+}
+#stage
+{ /*W3 Schools helped for this section*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+#check
+{
+    background-image: linear-gradient(#8700e0, #2a004b); /*Gradient code from w3 schools */
+    border: 2px solid #000000;
+    color: #f1f0f3;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 40%;
+    border-radius: 25%;
+}
+#aud
+{
+    text-align: left; /*Put the audio to the side*/
+}
+
+
+

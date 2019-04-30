@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RPG Battle Simulation</title>
+    <script src="rpgScript.js">
+    </script>
+    <link rel="stylesheet" href="Aesthetics.css">
+    <style>
+        body {
+            background-color: #191919;
+        }
+        .dropbtn {
+            background-color: #4CAF50;
+            color: #f6fcff;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            background-image: linear-gradient(#8700e0, #2a004b); /*code from w3 schools along with dropdown */
+            border: 2px solid #000000;
+            color: #f6fcff;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 40%;
+            border-radius: 25%;
+        }
+        } /* Do not be fooled this is very much left on purpose for the sake of the appearnce of the dropdown*/
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #2829a8;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(246, 252, 255, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #f6fcff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #009df0
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #009df0;
+        }
+            /*Tool tip also from w3 schools*/
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #009df0;
+            color: #ffffff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body onload="music()">
+
+<p id="title"><font color="white" font size="18"><!--Title -->
+    RPG Game
+</font></p>
+
+<br><br>
+<h2><i>The rules are simple click to attack and try your best to defeat the boss you got this!</i></h2><!-- Rules-->
+<br><br>
+
+<h3>You are the legendary wizard himself <b><i>Zaber LightDabber</i></b> and you have to defeat the one and only <b><i>Lira the Druid</i></b>. Lira
+    isn't evil or anything she just <b><i>stole your subway cookie</i></b>...again and you had enough of this now it's up to you to
+    defeat her <del>because your sensei Kaze couldn't and is too affectionate to do it</del>. Now normal attack to start! </h3> <!--Plot -->
+
+<br><br>
+
+
+<audio id="song" autoplay>
+    <source src="img/music.mp3" type="audio/mpeg">
+</audio>
+
+<p id="aud">In case audio will not play due to browser difficulties</p> <!--Audio from Square Enix -->
+<audio controls>
+    <source src="img/music.mp3" type="audio/mpeg">
+</audio>
+<br><br>
+<hr>
+<br><br>
+
+<form name="herHP" id="herHP">
+Lira HP is: <input name="bossHP" type="text" readonly="true"> out of 60,000 <!-- Boss HP -->
+</form>
+
+<br><br>
+<img id="stage" class="center" src="img/start.PNG" height="375" width="657" >
+<!-- Backround image found by asset, characters are hand drawn by me and cookie is a picture on google -->
+<br><br>
+
+<form name="hisBars" id="hisBars">
+    Zaber HP is: <i><input name="heroHP" type="text" readonly="true"> out of 4800</i>
+    <br><br>
+    Zaber MP is: <i><input name="heroMP" type="text" readonly="true"> out of 490</i>  <!-- Hero information-->
+</form>
+
+<br>
+
+<form name="time">
+    The turn is <input name="counter" type="text" readonly="true"><i>(Every 5 turns you are able to use Limit Overdrive)</i>
+</form> <!--Turn counter -->
+
+<br>
+
+<form name="attac" id="attac">
+    <button type="button" name="NA" onclick="normalAttack()"><b>Normal Attack</b></button>
+    <br><br>
+   <!--  Dropdown gotten from w3 schools-->
+    <div class="dropdown">
+        <button class="dropbtn" disabled><b>Offensive MP moves</b></button> <!-- Moves -->
+        <div class="dropdown-content">
+            <div class="tooltip"><a onclick="waterGatling()">Water Gatling</a> <!--Hover text from W3 Schools -->
+                <span class="tooltiptext"><i>Release a multitude of water based attacks(35 MP)</i></span></div>
+
+            <div class="tooltip"><a onclick="firboltPhx()">Firebolt Pheonix</a>
+                <span class="tooltiptext"><i>Combine fire and lightning to release a powerful attack(45 MP)</i></span></div>
+
+            <div class="tooltip"><a onclick="windPrison()">Wind Prison</a>
+                <span class="tooltiptext"><i>Surround your enemy in wind leaving no escape(60 MP)</i></span></div>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn" disabled><b>Defensive MP moves</b></button>
+        <div class="dropdown-content">
+
+            <div class="tooltip"><a onclick="brightAegis()">Bright Aegis</a>
+                <span class="tooltiptext"><i>A blinding and unbreakable sheild that nulls all attacks(60 MP)</i></span></div>
+
+            <div class="tooltip"><a onclick="nature()">Nature's Blessing</a>
+                <span class="tooltiptext"><i>Summon nature's vines that heal you (25 MP)</i></span></div>
+
+            <div class="tooltip"><a onclick="onyxDrain()">Onyx Drain</a>
+                <span class="tooltiptext"><i>Harness the dark and steal your enemy's power(No cost)</i></span></div>
+        </div>
+    </div>
+
+
+    <div class="tooltip">
+        <a type="button" id="check" onclick="limit()"><b><i>Limit Overdrive</i></b></a><!-- Limit -->
+        <span class="tooltiptext"><i>Unleash the ultimate attack using magic in its purest form(usable every 5 turns)</i></span></div>
+
+</form>
+
+</body>
+</html>
